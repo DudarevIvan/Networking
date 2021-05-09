@@ -33,6 +33,7 @@ public struct URLPath {
 }
 
 
+// Expandable enum for the future
 public enum EndPoint {
     
     case basketball
