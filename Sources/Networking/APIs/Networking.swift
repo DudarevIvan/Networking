@@ -50,7 +50,7 @@ public struct Networking {
    }
    
    // Fetch image
-   func fetchImage(for path: String) -> AnyPublisher <UIImage?, Never> {
+   public func fetchImage(for path: String) -> AnyPublisher <UIImage?, Never> {
       guard let url = URL(string: path) else {
          return Just(nil).eraseToAnyPublisher()
       }
