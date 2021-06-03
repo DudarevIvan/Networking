@@ -61,4 +61,13 @@ public struct Networking {
          .receive(on: RunLoop.main)
          .eraseToAnyPublisher()                         
    }
+   
+   // Fetch image
+   public func fetchImage(_ url: String, completion: @escaping (Result<Data, Never>) -> ()) {
+      guard let url = URL(string: url) else { return }
+      URLSession.shared.dataTask(with: url) { data, response, error in
+         guard let data = data, error == nil else { return }
+         completion(Result.success(data))
+      }.resume()
+   }
 }
