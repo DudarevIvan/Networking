@@ -50,7 +50,7 @@ public struct Networking {
    }
    
    // Fetch image
-   public func fetchImage(for path: String) -> AnyPublisher <UIImage?, Never> {
+   private func fetchImage(for path: String) -> AnyPublisher <UIImage?, Never> {
       guard let url = URL(string: path) else {
          return Just(nil).eraseToAnyPublisher()
       }
@@ -59,15 +59,16 @@ public struct Networking {
          .map { UIImage(data: $0.data) }
          .replaceError(with: nil)
          .receive(on: RunLoop.main)
-         .eraseToAnyPublisher()                         
+         .eraseToAnyPublisher()
    }
    
-   // Fetch image
-   public func fetchImage(_ url: String, completion: @escaping (Result<Data, Never>) -> ()) {
+   // Fetch data
+   public func fetchData(_ url: String, completion: @escaping (Result<Data, Never>) -> ()) {
       guard let url = URL(string: url) else { return }
       URLSession.shared.dataTask(with: url) { data, response, error in
          guard let data = data, error == nil else { return }
          completion(Result.success(data))
       }.resume()
    }
+   
 }
