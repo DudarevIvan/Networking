@@ -25,7 +25,7 @@ public final class GamesViewModel: ObservableObject {
       }
    }
    
-   init() {
+   public init() {
       $indexEndpoint
          .flatMap { [self] (indexEndpoint) -> AnyPublisher<[Country], Never> in
             networking.fetchGames(endPoint: GamesEndPoint(index: indexEndpoint))
