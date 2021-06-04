@@ -9,9 +9,9 @@ import Foundation
 import Combine
 import SwiftUI
 
-public struct Networking {
+public struct WellWinNetwork {
    
-   public static let shared = Networking()
+   public static let shared = WellWinNetwork()
    
    private let urlPath = URLPath.shared
    
@@ -28,12 +28,12 @@ public struct Networking {
    
    
    // Fetch games
-   public func fetchGames(endPoint: EndPoint) -> AnyPublisher<[Country], Never> {
+   public func fetchGames(endPoint: GamesEndPoint) -> AnyPublisher<[Country], Never> {
       guard let url = urlPath.gamesURL(for: endPoint) else {
          return Just([Country]()).eraseToAnyPublisher()
       }
       return fetch(url)
-         .map { (response: GamesResponse) -> [Country] in
+         .map { (response: Games) -> [Country] in
             response.countries }
          .replaceError(with: [Country]())
          .eraseToAnyPublisher()
@@ -48,27 +48,8 @@ public struct Networking {
          .replaceError(with: Archive())
          .eraseToAnyPublisher()
    }
-   
-   // Fetch image
-   public func fetchImage(for path: String) -> AnyPublisher <UIImage?, Never> {
-      guard let url = URL(string: path) else {
-         return Just(nil).eraseToAnyPublisher()
-      }
-      return
-         URLSession.shared.dataTaskPublisher(for: url)
-         .map { UIImage(data: $0.data) }
-         .replaceError(with: nil)
-         .receive(on: RunLoop.main)
-         .eraseToAnyPublisher()
-   }
-   
-   // Fetch data
-   public func fetchData(_ url: String, completion: @escaping (Result<Data, Never>) -> ()) {
-      guard let url = URL(string: url) else { return }
-      URLSession.shared.dataTask(with: url) { data, response, error in
-         guard let data = data, error == nil else { return }
-         completion(Result.success(data))
-      }.resume()
-   }
-   
 }
+
+
+
+
