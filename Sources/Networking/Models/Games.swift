@@ -21,6 +21,7 @@ public struct Country: Codable, Identifiable {
    
    public var id: Int?
    public var name: String?
+   public var shortName: String?
    public var leagues: [Leagues]?
    
    public init(id: Int?, name: String?, leagues: [Leagues]?) {
