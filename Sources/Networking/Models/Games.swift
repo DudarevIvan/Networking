@@ -24,7 +24,7 @@ public struct Country: Codable, Identifiable {
    public var shortName: String?
    public var leagues: [Leagues]?
    
-   public init(id: Int?, name: String?, leagues: [Leagues]?) {
+   public init(id: Int?, name: String?, shortName: String?, leagues: [Leagues]?) {
       self.id = id
       self.name = name
       self.leagues = leagues
