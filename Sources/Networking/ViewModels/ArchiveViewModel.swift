@@ -11,7 +11,7 @@ import Combine
 public final class ArchiveViewModel: ObservableObject {
    
    // Share
-   public let share: ArchiveViewModel = .init()
+   public static let share: ArchiveViewModel = .init()
    
    // Networking
    private var networking = Networking.shared
@@ -28,7 +28,7 @@ public final class ArchiveViewModel: ObservableObject {
       }
    }
    
-   init() {
+   private init() {
       //self.share = .init()
       $pathArchive
          .flatMap { (pathArchive) -> AnyPublisher<Archive, Never> in
