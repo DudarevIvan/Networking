@@ -10,8 +10,11 @@ import Combine
 
 public final class ArchiveViewModel: ObservableObject {
    
+   // Share
+   public let share: ArchiveViewModel
+   
    // Networking
-   private var networking = WellWinNetwork.shared
+   private var networking = Networking.shared
    
    // Archive
    @Published public var archive: Archive = .init()
@@ -26,6 +29,7 @@ public final class ArchiveViewModel: ObservableObject {
    }
    
    public init() {
+      self.share = .init()
       $pathArchive
          .flatMap { (pathArchive) -> AnyPublisher<Archive, Never> in
             self.networking.fetchArchive(for: pathArchive)

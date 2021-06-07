@@ -11,7 +11,7 @@ import Combine
 public final class GamesViewModel: ObservableObject {
    
    // Networking
-   private var networking = WellWinNetwork.shared
+   private var networking = Networking.shared
    
    // Games
    @Published public var countries: [Country] = .init()

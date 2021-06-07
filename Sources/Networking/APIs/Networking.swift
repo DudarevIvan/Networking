@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Networking.swift
 //  
 //
 //  Created by Ivan Dudarev on 4/28/21.
@@ -9,9 +9,9 @@ import Foundation
 import Combine
 import SwiftUI
 
-public struct WellWinNetwork {
+public struct Networking {
    
-   public static let shared = WellWinNetwork()
+   public static let shared: Networking = .init()
    
    private let urlPath = URLPath.shared
    
