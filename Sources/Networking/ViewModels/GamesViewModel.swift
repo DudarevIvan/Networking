@@ -33,4 +33,17 @@ public final class GamesViewModel: ObservableObject {
          .assign(to: \.countries, on: self)
          .store(in: &self.cancellableSet)
    }
+   
+   func gamesPath(forCountry country: String, forLeague league: String) -> String {
+      for c in countries {
+         if c.name == country {
+            for l in c.leagues! {
+               if l.name == league {
+                  return (l.seasons?.first!.archive!)!
+               }
+            }
+         }
+      }
+      return ""
+   }
 }
