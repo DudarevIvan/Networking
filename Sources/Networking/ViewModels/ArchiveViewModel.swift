@@ -25,7 +25,7 @@ public final class ArchiveViewModel: ObservableObject {
       }
    }
    
-   private init() {
+   public init() {
       $pathArchive
          .flatMap { (pathArchive) -> AnyPublisher<Archive, Never> in
             self.networking.fetchArchive(for: pathArchive)
