@@ -9,12 +9,14 @@ import Foundation
 // Main
 public struct Games: Codable {
    
-   public let countries: [Country]
-   public let numberOfGames: Int
+   public var countries: [Country]?
+   public var numberOfGames: Int?
    
-   public init(countries: [Country]) {
-      self.countries = countries
-   }
+//   public init(countries: [Country]?, numberOfGames: Int?) {
+//      //super.init(coder: Decoder())
+//      self.countries = countries
+//      self.numberOfGames = numberOfGames
+//   }
 }
 
 // Country
@@ -23,7 +25,7 @@ public struct Country: Codable, Identifiable {
    public var id: Int?
    public var name: String?
    public var shortName: String?
-   public let numberOfGames: Int?
+   public var numberOfGames: Int?
    public var leagues: [Leagues]?
    
    public init(id: Int?, name: String?, shortName: String?, numberOfGames: Int?, leagues: [Leagues]?) {

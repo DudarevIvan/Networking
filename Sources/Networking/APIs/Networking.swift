@@ -28,14 +28,14 @@ public struct Networking {
    
    
    // Fetch games
-   public func fetchGames(endPoint: GamesEndPoint) -> AnyPublisher<[Country], Never> {
+   public func fetchGames(endPoint: GamesEndPoint) -> AnyPublisher<Games, Never> {
       guard let url = urlPath.gamesURL(for: endPoint) else {
-         return Just([Country]()).eraseToAnyPublisher()
+         return Just(Games()).eraseToAnyPublisher()
       }
       return fetch(url)
-         .map { (response: Games) -> [Country] in
-            response.countries }
-         .replaceError(with: [Country]())
+         //.map { (response: Games) -> Games in
+            //response }
+         .replaceError(with: Games())
          .eraseToAnyPublisher()
    }
    
