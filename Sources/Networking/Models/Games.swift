@@ -11,12 +11,6 @@ public struct Games: Codable {
    
    public var countries: [Country]?
    public var numberOfGames: Int?
-   
-//   public init(countries: [Country]?, numberOfGames: Int?) {
-//      //super.init(coder: Decoder())
-//      self.countries = countries
-//      self.numberOfGames = numberOfGames
-//   }
 }
 
 // Country
