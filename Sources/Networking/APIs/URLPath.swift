@@ -16,7 +16,7 @@ public struct URLPath {
    }
    
    // Game url
-   public func gamesURL(for games: GamesEndPoint = GamesEndPoint()) -> URL? {
+   public func gameURL(for games: Games = Games()) -> URL? {
       let url: String = games.path()
       return absoluteURL(for: url)
    }
@@ -34,7 +34,7 @@ public struct URLPath {
 
 
 // Expandable enum for the future
-public enum GamesEndPoint {
+public enum Games {
    
    case football
    case basketball

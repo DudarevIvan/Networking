@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Archive: Codable {
+public struct FootballArchive: Codable {
 
     public var country: String?
     public var league: String?

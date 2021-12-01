@@ -7,7 +7,7 @@
 import Foundation
 
 // Main
-public struct Games: Codable {
+public struct Football: Codable {
    public var countries: [Country]?
    public var numberOfGames: Int?
 }
