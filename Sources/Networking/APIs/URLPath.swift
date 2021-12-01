@@ -3,7 +3,9 @@ import Foundation
 
 public struct URLPath {
    
-   public static let shared = URLPath()
+    public static let shared: URLPath = .init()
+    
+    private init() {}
    
    // Flags url
    public let flagsURL: String = "https://www/wellwin-app.com/data/v1/shared/flags/flags.json"
