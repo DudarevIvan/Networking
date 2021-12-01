@@ -10,7 +10,7 @@ import Combine
 public final class FootballViewModel: ObservableObject {
     
     // Shared
-    static let shared: FootballViewModel = .init()
+    public static let shared: FootballViewModel = .init()
     
     // Networking
     private var service = NetworkService.shared
