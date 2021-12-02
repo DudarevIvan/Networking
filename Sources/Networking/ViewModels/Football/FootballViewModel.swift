@@ -13,13 +13,13 @@ public final class FootballViewModel: ObservableObject {
     public static let shared: FootballViewModel = .init()
     
     // Networking
-    private var service = NetworkService.shared
+    private var service = NetworkingService.shared
     
-    // Game data
+    // Sports data
     @Published public var football: Football = .init()
     
     // Errors
-    @Published public var networkError: NetworkError?
+    @Published public var networkingError: NetworkingError?
     
     // Save Published
     private var cancellableSet: Set<AnyCancellable> = []
@@ -31,16 +31,17 @@ public final class FootballViewModel: ObservableObject {
     }
     
     private init() {
-        self.service.fetchGame(endPoint: Games.football)
+        self.service.fetchSport(for: Sports.Football)
             .eraseToAnyPublisher()
             .sink(
                 receiveCompletion: { completion in
                     if case let .failure(error) = completion {
-                        self.networkError = error
+                        self.networkingError = error
                     }},
-                receiveValue:  { [unowned self] value in
+                receiveValue: { [unowned self] value in
                     football = value
-                })
+                }
+            )
             .store(in: &self.cancellableSet)
     }
 }

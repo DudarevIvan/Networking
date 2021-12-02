@@ -1,5 +1,5 @@
 //
-//  NetworkService.swift
+//  NetworkingService.swift
 //  
 //
 //  Created by Ivan Dudarev on 4/28/21.
@@ -9,13 +9,13 @@ import Foundation
 import Combine
 import SwiftUI
 
-public final class NetworkService {
+public final class NetworkingService {
     
-    public static let shared: NetworkService = .init()
+    public static let shared: NetworkingService = .init()
     
-    private let urlPath = URLPath.shared
+    private init() {}
     
-    public init() {}
+    private let url = URLPath.shared
     
     // Save Published
     private var cancellableSet: Set<AnyCancellable> = []
@@ -31,7 +31,7 @@ public final class NetworkService {
           .tryMap { (data, response) -> Data in
              guard let httpResponse = response as? HTTPURLResponse,
                    200...299 ~= httpResponse.statusCode else {
-                throw NetworkError.responseError (
+                throw NetworkingError.responseError (
                    (response as? HTTPURLResponse)?.statusCode ?? 500)
              }
              return data
@@ -41,10 +41,10 @@ public final class NetworkService {
           .eraseToAnyPublisher()
     }
     
-    // Game
-    public func fetchGame<T: Decodable>(endPoint: Games) -> AnyPublisher<T, NetworkError> {
-       Future<T, NetworkError> { [unowned self] promise in
-          guard let url = urlPath.gameURL(for: endPoint) else {
+    // Sport
+    public func fetchSport<T: Decodable>(for sport: Sports) -> AnyPublisher<T, NetworkingError> {
+       Future<T, NetworkingError> { [unowned self] promise in
+          guard let url = url.sportURL(for: sport) else {
              return promise(
                 .failure(.urlError(URLError(.unsupportedURL))))
           }
@@ -57,7 +57,7 @@ public final class NetworkService {
                             promise(.failure(.urlError(urlError)))
                          case let decodingError as DecodingError:
                             promise(.failure(.decodingError(decodingError)))
-                         case let apiError as NetworkError:
+                         case let apiError as NetworkingError:
                             promise(.failure(apiError))
                          default:
                             promise(.failure(.genericError))
@@ -71,9 +71,9 @@ public final class NetworkService {
     }
     
     // Archive
-    public func fetchArchive<T: Decodable>(for path: String) -> AnyPublisher<T, NetworkError> {
-       Future<T, NetworkError> { [unowned self] promise in
-          guard let url = urlPath.absoluteURL(for: path) else {
+    public func fetchArchive<T: Decodable>(for path: String) -> AnyPublisher<T, NetworkingError> {
+       Future<T, NetworkingError> { [unowned self] promise in
+          guard let url = url.archiveURL(for: path) else {
              return promise(
                 .failure(.urlError(URLError(.unsupportedURL))))
           }
@@ -86,7 +86,7 @@ public final class NetworkService {
                             promise(.failure(.urlError(urlError)))
                          case let decodingError as DecodingError:
                             promise(.failure(.decodingError(decodingError)))
-                         case let apiError as NetworkError:
+                         case let apiError as NetworkingError:
                             promise(.failure(apiError))
                          default:
                             promise(.failure(.genericError))
@@ -99,7 +99,3 @@ public final class NetworkService {
        .eraseToAnyPublisher()
     }
 }
-
-
-
-

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum NetworkError: Error, LocalizedError, Identifiable {
+public enum NetworkingError: Error, LocalizedError, Identifiable {
    
    public var id: String { localizedDescription }
    
@@ -25,7 +25,7 @@ public enum NetworkError: Error, LocalizedError, Identifiable {
          case .responseError(let status):
             return "Bad response code: \(status)"
          case .genericError:
-            return "An unknown error has been occured"
+            return "Error"
       }
    }
 }
