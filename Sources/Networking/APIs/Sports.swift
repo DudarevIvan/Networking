@@ -16,7 +16,12 @@ public enum Sports: String, CaseIterable {
 }
 
 
-extension Sports {
+extension Sports: Identifiable {
+    
+    public var id: String {
+        self.rawValue
+    }
+    
     // The default sport is Football
     public init() {
         self = .Football
