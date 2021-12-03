@@ -2,18 +2,18 @@
 //  File.swift
 //  
 //
-//  Created by Ivan Dudarev on 01.12.2021.
+//  Created by Ivan Dudarev on 03.12.2021.
 //
 
 import Combine
 
-public final class FootballArchiveViewModel: ObservableObject {
+public final class FootballArchiveViewModel<T: Decodable>: ObservableObject {
     
     // Networking
     private var service = NetworkingService.shared
     
     // Archive
-    @Published public var archive: FootballArchive = .init()
+    @Published public var archive: T?
     
     // Errors
     @Published public var networkingError: NetworkingError?

@@ -7,13 +7,13 @@
 
 import Combine
 
-public final class SportViewModel<SportGen: Decodable>: ObservableObject {
+public final class SportViewModel<T: Decodable>: ObservableObject {
     
     // Networking
     private var service = NetworkingService.shared
     
     // Sports data
-    @Published public var data: SportGen?
+    @Published public var data: T?
     
     // Errors
     @Published public var networkingError: NetworkingError?
@@ -27,8 +27,8 @@ public final class SportViewModel<SportGen: Decodable>: ObservableObject {
         }
     }
     
-    public init() {
-        self.service.fetchSport(for: Sports.Football)
+    public init(_ sport: Sports) {
+        self.service.fetchSport(for: sport)
             .eraseToAnyPublisher()
             .sink(
                 receiveCompletion: { completion in
