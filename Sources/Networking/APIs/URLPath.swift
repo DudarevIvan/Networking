@@ -13,7 +13,7 @@ public struct URLPath {
     
     // Sport url
     public func sportURL(for sport: Sports = .init()) -> URL? {
-        let url: String = sport.path()
+        let url: String = sport.sportEndPoint()
         return absoluteURL(for: url)
     }
     

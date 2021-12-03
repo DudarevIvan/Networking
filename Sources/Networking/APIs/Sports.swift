@@ -26,7 +26,7 @@ extension Sports {
         self.rawValue
     }
     
-    public func path() -> String {
+    public func sportEndPoint() -> String {
         switch self {
         case .Football:
             return "/football/football.json"
