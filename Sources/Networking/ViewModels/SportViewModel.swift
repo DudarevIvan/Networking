@@ -7,13 +7,13 @@
 
 import Combine
 
-public final class SportViewModel<T: Decodable>: ObservableObject {
+public final class SportViewModel: ObservableObject {
     
     // Networking
     private var service = NetworkingService.shared
     
     // Sports data
-    @Published public var data: T?
+    @Published public var data: SportModel?
     
     // Errors
     @Published public var networkingError: NetworkingError?

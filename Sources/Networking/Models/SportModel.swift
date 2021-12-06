@@ -2,14 +2,14 @@
 //  File.swift
 //  
 //
-//  Created by Ivan Dudarev on 4/28/21.
+//  Created by Ivan Dudarev on 07.12.2021.
 //
+
 import Foundation
 
-// Main
-public struct Football: Codable {
-   public var countries: [Country]?
-   public var numberOfGames: Int?
+public struct SportModel: Codable {
+    public var countries: [Country]?
+    public var numberOfGames: Int?
 }
 
 // Country
@@ -35,6 +35,5 @@ public struct Seasons: Codable, Identifiable {
    public var id: Int?
    public var season: String?
    public let numberOfGames: Int?
-   public var archive: String? 
+   public var archive: String?
 }
-
