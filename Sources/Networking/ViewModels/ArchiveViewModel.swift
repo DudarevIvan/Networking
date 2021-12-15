@@ -7,7 +7,7 @@
 
 import Combine
 
-public final class FootballArchiveViewModel<T: Decodable>: ObservableObject {
+public final class ArchiveViewModel<T: Decodable>: ObservableObject {
     
     // Networking
     private var service = NetworkingService.shared
