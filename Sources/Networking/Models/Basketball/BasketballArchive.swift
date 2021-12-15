@@ -7,5 +7,5 @@
 
 import Foundation
 
-public struct BasketballArchive: Codable {
+public struct BasketballArchive: Codable, ArchiveProtocol {
 }
