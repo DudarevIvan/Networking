@@ -33,7 +33,7 @@ public struct Leagues: Codable, Identifiable {
 // Seasons
 public struct Seasons: Codable, Identifiable {
    public var id: Int?
-   public var season: String?
+   public var date: String?
    public let numberOfGames: Int?
    public var archive: String?
 }
