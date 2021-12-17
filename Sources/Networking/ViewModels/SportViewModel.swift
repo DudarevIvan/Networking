@@ -37,8 +37,6 @@ public final class SportViewModel: ObservableObject {
                 self.service.fetchSport(for: s)
                     .eraseToAnyPublisher()
                     }
-//        self.service.fetchSport(for: sports)
-//            .eraseToAnyPublisher()
             .sink(
                 receiveCompletion: { completion in
                     if case let .failure(error) = completion {
