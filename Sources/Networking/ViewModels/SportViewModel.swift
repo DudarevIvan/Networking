@@ -16,7 +16,7 @@ public final class SportViewModel: ObservableObject {
     @Published public var data: SportModel?
     
     // Sports
-    @Published public var sports: Sports
+    @Published public var sports: Sports = .init()
     
     // Errors
     @Published public var networkingError: NetworkingError?
@@ -30,14 +30,14 @@ public final class SportViewModel: ObservableObject {
         }
     }
     
-    public init(_ sport: Sports) {
-        self.sports = sport
+    public init() {
         $sports
+            .setFailureType(to: NetworkingError.self)
             .flatMap { (s) -> AnyPublisher<SportModel, NetworkingError> in
                 self.service.fetchSport(for: s)
                     .eraseToAnyPublisher()
                     }
-//        self.service.fetchSport(for: sport)
+//        self.service.fetchSport(for: sports)
 //            .eraseToAnyPublisher()
             .sink(
                 receiveCompletion: { completion in
