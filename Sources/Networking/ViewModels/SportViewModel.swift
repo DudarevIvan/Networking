@@ -32,8 +32,13 @@ public final class SportViewModel: ObservableObject {
     
     public init(_ sport: Sports) {
         self.sports = sport
-        self.service.fetchSport(for: sport)
-            .eraseToAnyPublisher()
+        $sports
+            .flatMap { (s) -> AnyPublisher<SportModel, NetworkingError> in
+                self.service.fetchSport(for: s)
+                    .eraseToAnyPublisher()
+                    }
+//        self.service.fetchSport(for: sport)
+//            .eraseToAnyPublisher()
             .sink(
                 receiveCompletion: { completion in
                     if case let .failure(error) = completion {
