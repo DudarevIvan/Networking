@@ -15,6 +15,9 @@ public final class SportViewModel: ObservableObject {
     // Sports data
     @Published public var data: SportModel?
     
+    // Sports
+    @Published public var sports: Sports
+    
     // Errors
     @Published public var networkingError: NetworkingError?
     
@@ -28,6 +31,7 @@ public final class SportViewModel: ObservableObject {
     }
     
     public init(_ sport: Sports) {
+        self.sports = sport
         self.service.fetchSport(for: sport)
             .eraseToAnyPublisher()
             .sink(
